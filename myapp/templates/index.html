@@ -1,0 +1,131 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Way To Interior</title>
+    <link rel="stylesheet" href="/static/css/stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
+</head>
+<body>
+    {% include 'navbar.html' %}
+    <!-- Hero Section with Fixed Background -->
+    <header class="hero">
+        <div class="overlay">
+            <div class="hero-text">
+                <p class="subtitle">- Value the Space -</p>
+                <h1><span>Way to Interior</span></h1>
+                <a href="{% url 'designs' %}" class="order-btn">View designs</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cacao & Me Section -->
+    <section class="cacao-section">
+        <div class="cacao-container">
+            <div class="cacao-image">
+                <img src="/static/images/cacao.png" alt="Chocolatier Beth Bloomings" />
+            </div>
+            <div class="cacao-text">
+                <h2>How it works?</h2>
+                <h4>steps you need!</h4>
+                <p>
+                    The "Way to Interior" process is designed to make finding the perfect interior design solution
+                    simple, personalized, and efficient. It all begins with you—step one encourages users to add their
+                    specific requirements according to their needs, ensuring that the platform understands your unique
+                    preferences, space limitations, and style inclinations
+                </p>
+                <p>
+                    Once those details are submitted, step two involves smartly matching your requirements with tailored
+                    results, presenting design options that are a perfect fit for your taste and expectations. This
+                    curated approach eliminates the overwhelm of too many choices, streamlining the journey toward your
+                    dream space.
+                </p>
+                <p>
+                    Finally, in step three, the process reaches its most exciting phase—connecting directly with
+                    professional designers on a one-to-one basis. This personal interaction allows for deeper
+                    collaboration, enabling you to communicate ideas, receive expert suggestions, and work hand-in-hand
+                    with designers to bring your vision to life. The entire flow, from submitting your needs to
+                    real-time designer interaction, is intuitively structured to ensure a smooth and satisfying user
+                    experience in transforming your space.
+                </p>
+            </div>
+        </div>
+    </section>
+    <!-- Image Strip Section -->
+    <section class="image-strip">
+        <img src="/static/images/imagetrip.png" alt="image">
+    </section>
+
+    <!-- Catering & Events Section -->
+    <section class="catering-section">
+        <div class="catering-container">
+            <div class="catering-text">
+                <h2>Services we provide</h2>
+                <h4>SERVING YOU</h4>
+                <p>
+                    At Way to Interior, we offer a complete interior design experience through our four core
+                    services. Begin by sharing your requirements, where you tell us your style, space needs, and budget.
+                    Next, explore our curated designs, crafted to inspire and reflect your unique taste. Choose from a
+                    diverse pool of skilled designers who bring creativity and expertise to every project. Finally,
+                    enjoy a personalized experience with our 1:1 connect feature—directly interact with your chosen
+                    designer to bring your vision to life, every step of the way.
+                </p>
+                <a href="add_requirements.html" class="view-btn">VIEW SELECTION &gt;</a>
+            </div>
+            <div class="catering-gallery">
+                <img src='https://i.pinimg.com/236x/c0/ae/1e/c0ae1ed466c85277317dd514d759f428.jpg' alt="Choco Truffles">
+                <img src="https://i.pinimg.com/236x/ed/5f/63/ed5f63b64026fc0c5114871a6ec117e1.jpg" alt="Cake Pops">
+                <!-- <img src="https://i.pinimg.com/564x/af/01/bd/af01bddb705257d6babb1df1605c1035.jpg'" alt="library"> -->
+                <img src="https://i.pinimg.com/564x/af/01/bd/af01bddb705257d6babb1df1605c1035.jpg" alt="Chocolate Cup">
+            </div>
+        </div>
+    </section>
+    <section class="quote-section">
+        <div class="quote-overlay">
+            <blockquote>
+                <p>“Your home should tell the story of who you are, and be a collection of what you love.”</p>
+                <cite>- Nate Berkus -</cite>
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- The Beans Section -->
+    <section class="beans-section">
+        <div class="container beans-container">
+            <div class="beans-images">
+                <img src="/static/images/aboutus.jpg" alt="Chocolatier Beth Bloomings" />
+                <!-- <img src="media/beansimg1.png" alt="Woman Making Chocolate" />
+                <img src="media/beansimg2.png" alt="Chocolate Bars" /> -->
+            </div>
+            <div class="beans-text">
+                <h2 style="color: black;">About us</h2>
+                <p class="subtitle">Get to know more about way to interior</p>
+                <p class="description">
+                    Welcome to Way to interior, your one-stop destination for beautiful, functional, and
+                    personalized interior design. We believe that every space has a story—and we’re here to help you
+                    tell yours. Whether you're furnishing a new home or giving your current space a fresh look, our
+                    platform connects you with top designers and tailored solutions. From understanding your
+                    requirements to exploring unique designs and getting expert guidance, we make the journey seamless
+                    and enjoyable. With our 1:1 connect feature, you’re never alone—your dream space is just a
+                    conversation away.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <p>©2025 DE Project</p>
+    </footer>
+</body>
+
+</html>

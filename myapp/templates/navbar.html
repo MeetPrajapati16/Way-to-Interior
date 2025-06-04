@@ -1,0 +1,168 @@
+{% load static %}
+
+<nav class="navbar">
+    <!-- Left: Navigation Links -->
+    <div class="nav-links">
+        <a href="{% url 'index' %}">Home</a>
+        <a href="{% url 'designs' %}">Designs</a>
+        <a href="{% url 'add_designer' %}">Designers</a>
+        <a href="{% url 'add_requirements' %}">Add Requirement</a>
+        <a href="{% url 'contact' %}">contact</a>
+        <a href="{% url 'review' %}">Review</a>
+
+
+    </div>
+
+    <!-- Right: Actions -->
+    <div class="nav-actions">
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'register' %}">register</a>
+
+
+        <!-- Profile Icon
+        <div class="profile-wrapper">
+            <div class="profile-icon" onclick="toggleProfilePopup()">
+                <i class="fa-solid fa-user-circle"></i>
+            </div>
+
+            <!-- User Profile Popup 
+            <div class="profile-popup" id="profilePopup" role="dialog" aria-labelledby="profileTitle" aria-hidden="true">
+                <div class="profile-header">
+                    <h4 id="profileTitle">User Profile</h4>
+                    <button class="close-btn" onclick="toggleProfilePopup()" aria-label="Close">&times;</button>
+                </div>
+                <div class="profile-info">
+                    <div class="info-row"><strong>Name:</strong> <span>John Doe</span></div>
+                    <div class="info-row"><strong>Email:</strong> <span>johndoe@example.com</span></div>
+                    <div class="info-row"><strong>Role:</strong> <span>User</span></div>
+                </div>
+                <button class="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div> -->
+    </div>
+</nav>
+
+<!-- FontAwesome (for icon) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js" crossorigin="anonymous"></script>
+
+<!-- Popup JS -->
+<script>
+    function toggleProfilePopup() {
+        const popup = document.getElementById("profilePopup");
+        popup.style.display = popup.style.display === "block" ? "none" : "block";
+    }
+
+    function logout() {
+        alert("Logged out successfully!");
+        document.getElementById("profilePopup").style.display = "none";
+    }
+
+    window.onclick = function (event) {
+        const popup = document.getElementById("profilePopup");
+        if (!event.target.closest('.profile-wrapper')) {
+            popup.style.display = "none";
+        }
+    };
+</script>
+
+<!-- Navbar + Popup CSS -->
+<style>
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #1e1e2f;
+        padding: 1rem 2rem;
+        color: white;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .nav-links a {
+        margin-right: 1.5rem;
+        color: white;
+        font-weight: 500;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+        color: #f5c842;
+    }
+
+    .nav-actions a {
+        margin-right: 1rem;
+        color: white;
+        text-decoration: none;
+    }
+
+    .profile-wrapper {
+        position: relative;
+        display: inline-block;
+    }
+
+    .profile-icon {
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    .profile-popup {
+        display: none;
+        position: absolute;
+        top: 40px;
+        right: 0;
+        width: 260px;
+        background: #fff;
+        color: #333;
+        border-radius: 10px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        z-index: 999;
+        padding: 1rem;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    .profile-header h4 {
+        margin: 0;
+        color: #1e1e2f;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 1.2rem;
+        color: #999;
+        cursor: pointer;
+    }
+
+    .close-btn:hover {
+        color: #e74c3c;
+    }
+
+    .profile-info .info-row {
+        margin-bottom: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logout-btn {
+        width: 100%;
+        padding: 0.6rem;
+        background: #e74c3c;
+        border: none;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s;
+    }
+
+    .logout-btn:hover {
+        background: #c0392b;
+    }
+</style>

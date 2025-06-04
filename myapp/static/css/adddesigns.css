@@ -1,0 +1,46 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1;
+  }
+
+  footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+  }
+  .form-control::placeholder {
+    color: #666;
+    opacity: 1;
+  }
+  .form-section {
+    padding: 30px;
+    max-width: 800px;
+    margin: auto;
+  }
+  .form-check-label {
+    margin-left: 5px;
+  }
+  .form-label{
+    color: black;
+  }
+  h2{
+    color:black;
+  }
+  .custom-file-drop {
+    border: 1px dashed #ccc;
+    padding: 30px;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    border-radius: 5px;
+  }

@@ -1,0 +1,551 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Interior Design Requirements</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Theme Variables */
+    :root {
+      --primary-color: #fdfdfd; /* Sea Green */
+      --secondary-color:  #4803df; /* Peach Puff */
+      --accent-color: #F5F5F5; /* Soft White */
+      --shadow-color: rgba(46, 139, 87, 0.4);
+      --text-color: #333333; /* Dark Gray */
+      --glass-bg: rgba(245, 245, 245, 0.15);
+      --glass-bg-dark: rgba(245, 245, 245, 0.1);
+    }
+
+    /* Body */
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: url('../static/images/background.avif') no-repeat center center fixed;
+      background-size: cover;
+      background-attachment: fixed;
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 20px;
+    }
+
+    /* Parallax Background Overlay */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(46, 139, 87, 0.3), rgba(0, 0, 0, 0.6));
+      z-index: 0;
+      transform: translateZ(-1px) scale(1.1);
+    }
+
+    /* Form Container */
+    .form-container {
+      background: var(--glass-bg);
+      border-radius: 30px;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.1);
+      border: 3px solid rgba(255, 218, 185, 0.3);
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      animation: float 6s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+      max-width: 950px;
+      width: 100%;
+      padding: 50px;
+      z-index: 1;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+
+    .form-container::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255, 218, 185, 0.3), transparent);
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      z-index: -1;
+    }
+
+    .form-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 218, 185, 0.2), transparent);
+      opacity: 0;
+      transition: all 1s ease;
+    }
+
+    .form-container:hover::before {
+      opacity: 1;
+    }
+
+    .form-container:hover::after {
+      opacity: 1;
+      transform: translateX(100%);
+    }
+
+    .form-container:hover {
+      transform: translateY(-20px) rotateX(8deg) rotateY(8deg);
+      box-shadow: 0 25px 80px var(--shadow-color);
+      border-color: var(--secondary-color);
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Heading Style */
+    h2 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-shadow: 0 0 15px var(--shadow-color), 0 0 30px var(--shadow-color);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      animation: fadeInText 1.5s ease-out;
+      margin-bottom: 40px !important;
+      position: relative;
+      text-align: center;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      transform: translateX(-50%);
+      border-radius: 2px;
+    }
+
+    @keyframes fadeInText {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Labels */
+    label {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-color);
+      margin-bottom: 12px;
+      transform: translateZ(5px);
+      position: relative;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    label::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary-color);
+      transition: width 0.4s ease;
+    }
+
+    label.active::after {
+      width: 100%;
+    }
+
+    /* Inputs, Selects, Textarea */
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 218, 185, 0.3);
+      border-radius: 12px;
+      color: var(--text-color);
+      font-size: 1rem;
+      padding: 14px;
+      transition: all 0.4s ease;
+      transform: translateZ(5px);
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="number"]:focus,
+    select:focus,
+    textarea:focus {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--primary-color);
+      box-shadow: 0 0 20px var(--shadow-color), inset 0 0 15px rgba(46, 139, 87, 0.2);
+      outline: none;
+      color: var(--text-color);
+      transform: translateZ(10px);
+    }
+
+    select {
+      appearance: none;
+      background-image: url('data:image/svg+xml;utf8,<svg fill="%23333333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: right 10px center;
+      padding-right: 40px;
+    }
+
+    textarea {
+      resize: none;
+      min-height: 150px;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    input[type="number"]::placeholder,
+    select::placeholder,
+    textarea::placeholder {
+      color: rgba(51, 51, 51, 0.6);
+      transition: opacity 0.3s ease;
+    }
+
+    input[type="text"]:focus::placeholder,
+    input[type="email"]:focus::placeholder,
+    input[type="number"]:focus::placeholder,
+    select:focus::placeholder,
+    textarea:focus::placeholder {
+      opacity: 0;
+    }
+
+    /* Range Slider */
+    input[type="range"] {
+      width: 100%;
+      margin: 20px 0;
+      background: transparent;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 8px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border-radius: 4px;
+      box-shadow: 0 0 10px var(--shadow-color);
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--accent-color);
+      border: 2px solid var(--primary-color);
+      border-radius: 50%;
+      margin-top: -6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 0 15px var(--shadow-color);
+    }
+
+    .slider-value {
+      font-size: 1.2rem;
+      color: var(--text-color);
+      text-align: center;
+      margin-top: 10px;
+      transform: translateZ(5px);
+    }
+
+    /* Checkbox Group */
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 25px;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+      font-size: 1.1rem;
+      color: var(--text-color);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+      transform: translateZ(5px);
+    }
+
+    .checkbox-group label:hover {
+      color: var(--secondary-color);
+    }
+
+    .checkbox-group input[type="checkbox"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 2px solid rgba(255, 218, 185, 0.3);
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .checkbox-group input[type="checkbox"]:checked {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+
+    .checkbox-group input[type="checkbox"]:checked::after {
+      content: '\f00c';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      color: var(--accent-color);
+      position: absolute;
+      left: 4px;
+      top: 2px;
+      font-size: 12px;
+    }
+
+    /* Submit Button */
+    button[type="submit"] {
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      border: none;
+      padding: 14px 40px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      border-radius: 50px;
+      transition: all 0.5s ease;
+      box-shadow: 0 5px 25px var(--shadow-color);
+      position: relative;
+      overflow: hidden;
+      transform: translateZ(10px);
+      width: 100%;
+      color: var(--text-color);
+    }
+
+    button[type="submit"]::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.7s ease;
+    }
+
+    button[type="submit"]:hover::before {
+      left: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(90deg, var(--secondary-color), var(--primary-color));
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px var(--shadow-color);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .form-container {
+        padding: 40px;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+      }
+
+      .form-control,
+      select,
+      textarea {
+        padding: 12px;
+        font-size: 0.95rem;
+      }
+
+      button[type="submit"] {
+        padding: 12px 30px;
+        font-size: 1.1rem;
+      }
+
+      .checkbox-group {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 30px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .form-control,
+      select,
+      textarea {
+        padding: 10px;
+        font-size: 0.9rem;
+      }
+
+      button[type="submit"] {
+        padding: 10px 25px;
+        font-size: 1rem;
+      }
+
+      .checkbox-group {
+        gap: 10px;
+      }
+    }
+  </style>
+
+  <script>
+    // Add active class to labels when inputs are focused
+    document.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+          const label = input.previousElementSibling;
+          if (label && label.tagName === 'LABEL') {
+            label.classList.add('active');
+          }
+        });
+        input.addEventListener('blur', () => {
+          const label = input.previousElementSibling;
+          if (label && label.tagName === 'LABEL' && !input.value) {
+            label.classList.remove('active');
+          }
+        });
+      });
+    });
+
+    // Budget Slider Update
+    function updateBudgetValue(value) {
+      document.getElementById('budgetValue').innerText = parseInt(value).toLocaleString();
+    }
+  </script>
+</head>
+
+<body>
+ 
+
+<div class="form-container">
+    <h2>Interior Design Requirements</h2>
+
+  <form method="POST">
+    {% csrf_token %}
+
+    <label for="space_type">Type of Space</label>
+    <select name="space_type" id="space_type" required>
+      <option value="">-- Select --</option>
+      <option>Living Room</option>
+      <option>Bedroom</option>
+      <option>Kitchen</option>
+      <option>Office</option>
+      <option>Commercial</option>
+    </select>
+
+    <label for="style">Preferred Design Style</label>
+    <select name="style" id="style" required>
+      <option value="">-- Select --</option>
+      <option>Modern</option>
+      <option>Traditional</option>
+      <option>Minimalist</option>
+      <option>Industrial</option>
+      <option>Bohemian</option>
+    </select>
+
+    <label for="budget">Estimated Budget (₹)</label>
+    <input type="range" name="budget" id="budget" min="10000" max="1000000" step="10000" oninput="updateBudgetValue(this.value)">
+    <div class="slider-value">₹ <span id="budgetValue">10000</span></div>
+
+    <label>What services do you need?</label>
+    <div class="checkbox-group">
+      <label><input type="checkbox" name="services" value="Furniture"> Furniture</label>
+      <label><input type="checkbox" name="services" value="Lighting"> Lighting</label>
+      <label><input type="checkbox" name="services" value="Wall Decor"> Wall Decor</label>
+      <label><input type="checkbox" name="services" value="Flooring"> Flooring</label>
+      <label><input type="checkbox" name="services" value="Color Scheme"> Color Scheme</label>
+    </div>
+
+    <label for="timeline">Expected Completion Time (in weeks)</label>
+    <input type="number" name="timeline" min="1" max="52" required />
+
+    <label for="description">Describe Your Vision</label>
+    <textarea name="description" id="description" rows="5" placeholder="Share your ideas, inspirations, or specific needs..." required></textarea>
+
+    <button type="submit" class="submit-btn">Submit Requirements</button>
+  </form>
+</div>
+
+<script>
+  function updateBudgetValue(value) {
+    document.getElementById('budgetValue').innerText = parseInt(value).toLocaleString();
+  }
+</script>
+
+</body>
+</html>
